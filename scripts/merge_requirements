@@ -8,12 +8,18 @@ parser = argparse.ArgumentParser()
 
 parser.add_argument(
     'first_file',
-    help='first file to merged'
+    help='first file to be merged'
 )
 
 parser.add_argument(
     'second_file',
-    help='second file to merged'
+    help='second file to be merged'
+)
+
+parser.add_argument(
+    'more_files',
+    nargs='*',
+    help='list of more files to be merged'
 )
 
 args = parser.parse_args()
@@ -22,7 +28,8 @@ def main():
 
     mf = ManageFile(
         args.first_file,
-        args.second_file
+        args.second_file,
+        *args.more_files
     )
 
     mg = Merge(mf)

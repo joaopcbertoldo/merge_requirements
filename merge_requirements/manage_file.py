@@ -11,10 +11,11 @@ DIR = os.path.dirname(os.path.realpath(__file__))
 
 class ManageFile(object):
 
-    def __init__(self, ff, sf):
+    def __init__(self, ff, sf, *mf):
 
         self.first_file = self.generate_dict_libs(ff)
         self.second_file = self.generate_dict_libs(sf)
+        self.more_files = [self.generate_dict_libs(f) for f in mf]
 
     def open_file(self, file):
 
@@ -52,6 +53,9 @@ class ManageFile(object):
 
         print('------------ second_file ------------')
         print(self.second_file)
+        
+        print('------------ more_files ------------')
+        print(self.more_files)
 
 class Merge(object):
 
@@ -68,6 +72,12 @@ class Merge(object):
             self.manage_file.first_file,
             self.manage_file.second_file
         )
+        
+        for f in self.manage_file.more_files:
+            self.dict_libs = merge_dict(
+                self.dict_libs,
+                f
+            )
 
     def generate_requirements_txt(self):
 

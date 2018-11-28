@@ -61,3 +61,7 @@ target/
 
 # pyenv
 .python-version
+
+# temporary stuff during development
+dev/
+requirements-merged*
